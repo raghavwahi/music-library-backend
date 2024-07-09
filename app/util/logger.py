@@ -12,12 +12,13 @@ Functions:
 - _configure_root_logger(log_file): Configures the root logger based on loaded configurations.
 - initialize_logging(): Initializes logging for the application.
 """
-from app.util.parser import Parser
 
-import os
-import logging
-from datetime import datetime
 import ast
+import logging
+import os
+from datetime import datetime
+
+from app.util.parser import Parser
 
 
 def _create_logs_directory():
@@ -86,15 +87,13 @@ def _configure_root_logger(log_file):
 
     configs = _load_logging_config()
     file_formatter = logging.Formatter(
-        configs.get("log_file_message_format"),
-        configs.get("log_time_format")
+        configs.get("log_file_message_format"), configs.get("log_time_format")
     )
     file_handler = _setup_file_handler(log_file, file_formatter)
     logger_obj.addHandler(file_handler)
 
     stream_formatter = logging.Formatter(
-        configs["log_stream_message_format"],
-        configs["log_time_format"]
+        configs["log_stream_message_format"], configs["log_time_format"]
     )
     stream_handler = _setup_stream_handler(stream_formatter)
     logger_obj.addHandler(stream_handler)

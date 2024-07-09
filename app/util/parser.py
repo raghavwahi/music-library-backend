@@ -3,6 +3,7 @@ Module: ConfigParser Module
 
 This module provides a Parser class for handling configuration files using configparser.
 """
+
 import configparser
 
 
@@ -10,6 +11,7 @@ class ConfigParserError(Exception):
     """
     Custom exception raised for errors related to configuration parsing.
     """
+
     pass
 
 
@@ -31,7 +33,8 @@ class Parser:  # pylint: disable=too-few-public-methods
             Retrieves configuration settings for a specific section as a dictionary.
             Raises ConfigParserError if the section key is not found.
     """
-    def __init__(self, _file='config.ini'):
+
+    def __init__(self, _file="config.ini"):
         """
         Initialize the Parser instance with a configuration file.
 

@@ -1,8 +1,9 @@
+import logging
+
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
 from app.util.logger import initialize_logging
-import logging
 
 load_dotenv()
 initialize_logging()

@@ -45,10 +45,10 @@ class Parser:  # pylint: disable=too-few-public-methods
         self._parse._interpolation = configparser.ExtendedInterpolation()
         self._parse.optionxform = str
         self._filename = _file
-        filepath = f"./src/configs/{_file}"
+        filepath = f"./config/{_file}"
         self._filepath = filepath if _file.endswith(".ini") else f"{filepath}.ini"
         parse_response = self._parse.read(self._filepath)
-
+        print(self._filepath)
         if not parse_response:
             error = f"{self._filename} is not present in src/config."
             raise ConfigParserError(error)

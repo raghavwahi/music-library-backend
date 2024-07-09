@@ -19,8 +19,8 @@ class Parser:  # pylint: disable=too-few-public-methods
 
     Attributes:
         _parse (configparser.ConfigParser): Internal configparser instance.
-        filename (str): Name of the configuration file.
-        filepath (str): Full path to the configuration file.
+        _filename (str): Name of the configuration file.
+        _filepath (str): Full path to the configuration file.
 
     Methods:
         __init__(self, _file='config.ini'):
@@ -44,13 +44,13 @@ class Parser:  # pylint: disable=too-few-public-methods
         self._parse = configparser.ConfigParser()
         self._parse._interpolation = configparser.ExtendedInterpolation()
         self._parse.optionxform = str
-        self.filename = _file
+        self._filename = _file
         filepath = f"./src/configs/{_file}"
-        self.filepath = filepath if _file.endswith(".ini") else f"{filepath}.ini"
-        parse_response = self._parse.read(self.filepath)
+        self._filepath = filepath if _file.endswith(".ini") else f"{filepath}.ini"
+        parse_response = self._parse.read(self._filepath)
 
         if not parse_response:
-            error = f"{self.filename} is not present in src/config."
+            error = f"{self._filename} is not present in src/config."
             raise ConfigParserError(error)
 
     def get_configs(self, key):
@@ -67,7 +67,7 @@ class Parser:  # pylint: disable=too-few-public-methods
             ConfigParserError: If the section key is not found in the configuration file.
         """
         if key not in self._parse.sections():
-            error = f"{key} is not present in {self.filename}."
+            error = f"{key} is not present in {self._filename}."
             raise ConfigParserError(error)
 
         return dict(self._parse[key])

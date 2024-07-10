@@ -17,7 +17,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . .
 
 # Run database migrations
-RUN python initialize_db.py
+RUN python app/scripts/initialize_db.py
 
 # Expose FastAPI port
 EXPOSE 8000

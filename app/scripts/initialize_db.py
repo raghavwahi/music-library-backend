@@ -6,14 +6,17 @@ inserts the data into an SQLite database.
 Raises:
     InitializationError: If the DATABASE_URL environment variable is not set.
 """
+
 import os
 import sqlite3
+
 import pandas as pd
 from dotenv import load_dotenv
 
 
 class InitializationError(Exception):
     """Custom exception raised when there is an error during the initialization process."""
+
     pass
 
 

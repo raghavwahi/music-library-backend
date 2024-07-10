@@ -110,7 +110,8 @@ def initialize_logging():
     Initializes logging for the application.
 
     This function sets up logging by creating a 'logs' directory, configuring log file
-    and stream handlers based on loaded configurations, and setting log levels for critical libraries.
+    and stream handlers based on loaded configurations, and setting log levels for critical
+    libraries.
     """
     logs_directory = _create_logs_directory()
     log_file = f"{logs_directory}/{datetime.now().strftime('%Y_%m_%d.log')}"

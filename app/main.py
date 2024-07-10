@@ -1,7 +1,8 @@
 """
 Main module for the FastAPI application.
 
-This module initializes a FastAPI application and includes routes from the 'app.routes.songs' module.
+This module initializes a FastAPI application and includes routes from the 'app.routes.songs'
+module.
 It also configures logging and provides a root endpoint to check if the application is running.
 
 Usage:
@@ -17,8 +18,8 @@ from fastapi import FastAPI
 load_dotenv()
 
 # Importing routes and initializing logging
-from app.routes import songs
-from app.util.logger import initialize_logging
+from app.routes import songs  # pylint: disable=wrong-import-position
+from app.util.logger import initialize_logging  # pylint: disable=wrong-import-position
 
 # Initialize logging configuration
 initialize_logging()

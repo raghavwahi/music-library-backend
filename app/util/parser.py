@@ -12,8 +12,6 @@ class ConfigParserError(Exception):
     Custom exception raised for errors related to configuration parsing.
     """
 
-    pass
-
 
 class Parser:  # pylint: disable=too-few-public-methods
     """

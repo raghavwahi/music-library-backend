@@ -62,7 +62,7 @@ Follow these steps to initialize the application:
 
 5. **Run the database migrations:**
     ```sh
-    python initialize_db.py
+    python app/scripts/initialize_db.py
     ```
 
 6. **Start the FastAPI application:**

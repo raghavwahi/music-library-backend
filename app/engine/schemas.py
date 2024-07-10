@@ -1,6 +1,5 @@
 from pydantic import BaseModel, Field
 
-
 class Song(BaseModel):
     id: str
     title: str
@@ -19,5 +18,9 @@ class Song(BaseModel):
     num_bars: int
     num_sections: int
     num_segments: int
-    _class: int = Field(alias="class")
+    class_: int = Field(..., alias="class")
     rating: int
+
+    class Config:
+        orm_mode: True
+        populate_by_name = True

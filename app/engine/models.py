@@ -3,7 +3,6 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-
 class Song(Base):
     __tablename__ = "songs"
 
@@ -24,5 +23,5 @@ class Song(Base):
     num_bars = Column(Integer, nullable=False)
     num_sections = Column(Integer, nullable=False)
     num_segments = Column(Integer, nullable=False)
-    _class = Column("class", Integer, nullable=False)
+    class_ = Column(Integer, name="class", nullable=False)
     rating = Column(Integer, nullable=False)

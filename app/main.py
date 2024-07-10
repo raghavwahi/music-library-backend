@@ -1,13 +1,17 @@
 import logging
+import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
+load_dotenv()
+
+from app.routes import songs
 from app.util.logger import initialize_logging
 
-load_dotenv()
 initialize_logging()
 app = FastAPI()
+app.include_router(songs.router)
 
 
 @app.get("/")

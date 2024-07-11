@@ -34,7 +34,7 @@ router = APIRouter(prefix="/songs", tags=["songs"])
 @router.get("/", response_model=schemas.SongPagination)
 def read_songs(
     skip: int = Query(0, ge=0),
-    limit: int = Query(10, ge=0),
+    limit: int = Query(10, ge=-1),
     db: Session = Depends(database.get_db),
 ):
     """
@@ -53,7 +53,10 @@ def read_songs(
 
     """
     total = db.query(models.Song).count()
-    songs = db.query(models.Song).offset(skip).limit(limit).all()
+    if limit == -1:
+        songs = db.query(models.Song).offset(skip).all()
+    else:
+        songs = db.query(models.Song).offset(skip).limit(limit).all()
     return schemas.SongPagination(total=total, skip=skip, limit=limit, data=songs)
 
 
@@ -87,14 +90,14 @@ def read_song(title: str, db: Session = Depends(database.get_db)):
 
 @router.put("/{song_id}", response_model=schemas.Song)
 def update_song(
-    song_id: str, song: schemas.Song, db: Session = Depends(database.get_db)
+    song_id: str, updated_song: schemas.Song, db: Session = Depends(database.get_db)
 ):
     """
     Update a song by its ID.
 
     Args:
         song_id (str): ID of the song to update.
-        song (schemas.Song): Updated song data.
+        updated_song (schemas.Song): Updated song data.
         db (Session): SQLAlchemy database session dependency.
 
     Returns:
@@ -107,7 +110,8 @@ def update_song(
     song = db.query(models.Song).filter(models.Song.id == song_id).first()
     if song is None:
         raise HTTPException(status_code=404, detail="Song not found")
-    for var, value in vars(song).items():
+    for var, value in vars(updated_song).items():
+        print(var, value)
         if value is not None:
             setattr(song, var, value)
     db.commit()

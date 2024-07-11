@@ -10,9 +10,11 @@ Usage:
 """
 
 import logging
+import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load environment variables from .env file
 load_dotenv()
@@ -27,8 +29,24 @@ initialize_logging()
 # Create FastAPI instance
 app = FastAPI()
 
+
 # Include the songs router
 app.include_router(songs.router)
+
+
+def get_allowed_origins_from_env():
+    allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "").strip()
+    allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",") if origin.strip()]
+    return allowed_origins
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=get_allowed_origins_from_env(),
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")

@@ -27,13 +27,15 @@ To run this application, you need to set the following environment variables:
 
 - `APP_ENV`: The environment in which the app is running (e.g., `DEV`, `PROD`).
 - `DATABASE_URL`: The URL of the database to connect to.
-- `LOG_LEVEL`: The logging level (e.g., `DEBUG`, `INFO`, `WARNING`, `ERROR`). 
+- `LOG_LEVEL`: The logging level (e.g., `DEBUG`, `INFO`, `WARNING`, `ERROR`).
+- `ALLOWED_ORIGINS`: This specifies allowed origins.
 
 Example `.env` file:
 ```dotenv
 APP_ENV=DEV
 DATABASE_URL=sqlite:///./test.db
 LOG_LEVEL=DEBUG
+ALLOWED_ORIGINS=http://127.0.0.1:3000
 ```
 
 ## Initialization

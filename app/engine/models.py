@@ -49,7 +49,7 @@ Example usage:
     )
 """
 
-from sqlalchemy import Column, Float, Integer, String
+from sqlalchemy import Column, Numeric, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -60,16 +60,16 @@ class Song(Base):
 
     id = Column(String, primary_key=True, index=True, nullable=False)
     title = Column(String, index=True, nullable=False)
-    danceability = Column(Float, nullable=False)
-    energy = Column(Float, nullable=False)
+    danceability = Column(Numeric, nullable=False)
+    energy = Column(Numeric, nullable=False)
     key = Column(Integer, nullable=False)
-    loudness = Column(Float, nullable=False)
+    loudness = Column(Numeric, nullable=False)
     mode = Column(Integer, nullable=False)
-    acousticness = Column(Float, nullable=False)
-    instrumentalness = Column(Float, nullable=False)
-    liveness = Column(Float, nullable=False)
-    valence = Column(Float, nullable=False)
-    tempo = Column(Float, nullable=False)
+    acousticness = Column(Numeric, nullable=False)
+    instrumentalness = Column(Numeric, nullable=False)
+    liveness = Column(Numeric, nullable=False)
+    valence = Column(Numeric, nullable=False)
+    tempo = Column(Numeric, nullable=False)
     duration_ms = Column(Integer, nullable=False)
     time_signature = Column(Integer, nullable=False)
     num_bars = Column(Integer, nullable=False)
